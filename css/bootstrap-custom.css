@@ -1,0 +1,103 @@
+.first-container
+{
+    height:100vh;
+    background: #eee;
+    background:url(../Images/home-bg.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar-inverse
+{
+	background: transparent;
+	padding: 0px;
+	border:0;	
+	margin:10px;
+}
+
+.login-button
+{
+	text-align:center;
+	background-color: #35c2eb;
+	color:black;
+}
+.show-content
+{
+	display: flex;
+	flex-direction: column;
+	color:#fff;
+	margin-top:13%;
+	line-height: 1.5;
+	}
+
+	.button-email {
+		background-color: #1a2435;
+		border:0;
+		border-radius: 0;
+	}
+.show-content > .cont-1
+{
+	font-size: 40px;
+}
+.show-content > .cont-2
+{
+	font-size: 20px;
+	color:white;
+	opacity:0.2;
+}
+.laptop-image
+{
+	margin:18%;
+	margin-bottom: 0;
+}
+.second-container
+{
+	height:100vh;
+}
+@media screen and (min-width: 120px) and (max-width: 767px)
+{
+	.first-container
+{
+    height:auto;
+    padding: 20px;
+}
+	
+   #myNavbar
+		{
+			background:white;
+			border:0;	
+		}
+		#myNavbar > .navbar-right > li
+		{
+			border-bottom: 1px solid #eee;
+		}
+		.navbar-nav
+		{
+			margin-top:0px;
+			margin-bottom:0px; 
+		}
+		.navbar-inverse .navbar-toggle
+		{
+			background:transparent;
+			border-color:#fff;
+		}
+		.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover
+		{
+			background: transparent;
+		}
+		.show-content
+		{
+			color:#fff;
+			margin-top: 0;
+			text-align:center;
+		}
+		.laptop-image
+		{
+			display:none;
+		}
+		.second-container
+        {
+	    padding: 50px;
+	    height:auto;
+        }
+}
