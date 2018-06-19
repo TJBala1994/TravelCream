@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   	  <meta charset="utf-8">
+   	  <meta name="viewport" content="width=device-width,initial-scale=1">
+   	  <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-travelcream-custom.css">
+
+
+
+   	  <script src="js\angular-1.6.10\angular.min.js"></script>
+   	  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+   	    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   	</head>
+   	<body ng-app="auto_complete">
+   		<div class="container-fluid first-container">
+   			<nav class="navbar navbar-inverse top-navbar">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span> 
+			      </button>
+			      <a class="navbar-brand" href="#">WebSiteName</a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="myNavbar">
+			      <ul class="nav navbar-nav header">
+			        <li class="active"><a href="#Flight">Flight</a></li>
+			        <li><a href="#Hotels">Hotels</a></li>
+			        <li><a href="#Trips">Trips</a></li> 
+			        <li><a href="#Activity">Activity</a></li> 
+			         <li><a href="#Deals">Deals</a></li> 
+			      </ul>
+			      <ul class="nav navbar-nav navbar-right login">
+			        <li><a href="#Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+   			<div class="row header-line1">
+   				<h1>Do you want to visit paris?</h1>
+   				<h4>Why not</h4>
+   			</div>
+   		</div>
+   		
+   			<div class="container search-data" style="position:absolute;left:18%;">
+	   			<form class="form-inline col-md-12 col-xs-12">
+	   				<div ng-controller="from-controller" class="form-group col-md-4">
+	   					<div class="row">
+					     <input type="text" name="car" id="car" ng-model="car" class="" ng-keyup="total(car)" style="padding: 15px;width:100%;" 
+					     class=" form-control col-xs-12" placeholder="Where are you living from?">
+					     <ul ng-hide="hideinfo" class="list-group col-xs-12" style="z-index: 2;">
+					     	<li class="list-group-item list-group-item-success" ng-repeat="from in search_car" ng-click="choose_textbox(from)" 
+					     	style="box-shadow: 0px 0px 10px #eee">
+					     		<span class="glyphicon glyphicon-map-marker"></span> <h4>{{from}}</h4>
+					     	</li>
+
+					     </ul>
+					 </div>
+				    </div>
+
+				    <div ng-controller="to-controller" class="form-group col-md-4">
+				    	<div class="row">
+					     <input type="text" name="car" id="car" ng-model="car" class="" ng-keyup="total(car)" style="padding: 15px;width:100%;" 
+					     class=" form-control col-xs-12" placeholder="Where are you go to?">
+					     <ul ng-hide="hideinfo" class="list-group col-xs-12" >
+					     	<li class="list-group-item list-group-item-success" ng-repeat="to in search_car" ng-click="choose_textbox(to)" 
+					     	style="box-shadow: 0px 0px 10px #eee">
+					     		<span class="glyphicon glyphicon-map-marker"></span> {{to}}
+					     	</li>
+
+					     </ul>
+					 </div>
+				    </div>
+				     <div ng-controller="to-controller" class="form-group col-md-2">
+				    	<div class="row">
+					     <input type="date" class="col-xs-12" style="padding: 15px;" ng-model="datePicker" placeholder="Enter date" datepicker 
+					     style="box-shadow: 0px 0px 10px #eee;">
+					 </div>
+				    </div>
+				    
+				    <div class="form-group col-md-2">
+				    	<div class="row">
+					     <button class=" btn btn-primary col-md-1 col-xs-12 search-btn" 
+					     style="width:100%;padding: 17px;border-radius: 0;background-color:#ff4b64;border:0">Search</button>
+					 </div>
+				    </div>   				
+	   			</form>
+   		    </div>
+   		
+   		<div class="container-fluid second-container" id="Flight" style="margin-top: 50px;">
+   			<div class="col-md-12">
+   				<nav class="navbar navbar-inverse top-navbar1">
+   				<div class="row">
+	   				<div class="navbar-header pull-left">
+	   					<a href="#" class="navbar-brand flight">Flights</a>
+	   				</div>
+	   				<ul class="nav navbar-nav navbar-right flight-menu pull-right">
+	   					<li><a href="#">Non stop</a></li>
+	   					<li><a href="#">Best price</a></li>
+	   					<li><a href="#">Airline</a></li>
+	   					<li><a href="#">Schedule</a></li>
+	   				</ul>
+	   			</div>
+   			</nav>
+   			</div>
+   			<div class="container-fluid table-data table-responsive">
+   				<table class="table">
+			    <thead class="text-center">
+			      <tr>
+			        <th class="col-md-2">Airline</th>
+			        <th class="col-md-2">Date</th>
+			        <th class="col-md-2">Depature</th>
+			         <th class="col-md-2">Arrival</th>
+			         <th class="col-md-2">Time</th>
+			         <th class="col-md-2">Price</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/vueling.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>vueling</h4>
+			        	                    	<h5>VO1367</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>870 $</b></button></td>
+			      </tr>
+			       <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>
+			      <tr>
+			        <td class="col-md-2"><div class="col-md-12">
+			        	                    <div class="col-md-3">
+			        	                    	 <div class="row">
+			        	                    	 	  <img src="Images/AF.png" width="40px;" style="margin-top: 10px">
+			        	                    	 </div>
+			        	                    </div>
+			        	                    <div class="col-md-9">
+			        	                       <div class="row"> 
+			        	                    	<h4>Airfrance</h4>
+			        	                    	<h5>AF905	</h5>
+			        	                       </div>
+			        	                    </div>
+			        	                </div>
+			        </td>
+			        <td class="col-md-2"><h4>03/11/2017</h4><h5>In 5 Days</h5></td>
+			        <td class="col-md-2"><h4>Paris(CDG)</h4><h5>07:15</h5></td>
+			        <td class="col-md-2"><h4>Miami</h4><h5>05:00</h5></td>
+			        <td class="col-md-2"><h4>08:45</h4><h5>CDG-MIA</h5></td>
+			        <td class="col-md-2"><button class="btn btn-primary btn-md" style="background: transparent;color:#ff4b64;border:1px solid #ff4b64;
+			        margin:20px;"><b>1023 $</b></button></td>
+			      </tr>      
+			    </tbody>
+			  </table>
+			  <a href="#"><h5 align="right">See all flight</h5></a>
+			</div>
+   		</div>
+   			<div class="container-fluid third-container" id="Hotels">
+   				<nav class="navbar navbar-inverse top-navbar2">
+	   				<div class="col-md-12">
+		   				<div class="navbar-header pull-left">
+		   					<a href="#" class="navbar-brand flight">Hotels</a>
+		   				</div>
+		   				<ul class="nav navbar-nav navbar-right flight-menu pull-right">
+		   					<li><a href="#">Best price</a></li>
+		   					<li><a href="#">Distance</a></li>
+		   				</ul>
+		   			</div>
+   			   </nav>
+   			   <div class="container-fluid" style="padding-left: 8%;padding-right: 8%">
+   			   	 <div class="row">
+   			   	  <div class="col-md-12 hotel-div">
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img1.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>Hôtel Paris Ouest Achères</h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img2.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>L'Hôtel du Collectionneur</h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img3.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>Hôtel Effile Shine</h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img3.1.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>Hôtel Mademoiselle</h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img3.2.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>Hôtel Novotel Paris-Les-Halles</h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+   			   	   	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+   			   	   		<div class="col-md-12" style="border:1px solid #eee">
+   			   	   		    <div class="row"><img src="Images/img3.3.png" width="100%"></div>
+   			   	   		    <div class="col-md-12" style="height:70px;"><h3>Villa Royale Montsouris </h3></div>
+   			   	   		    <div class="col-md-12" style="height:50px;">
+   			   	   		    	<div class="row">
+	                                <div class="col-md-6 col-xs-6">
+	   			   	   		    	     <h4>12.3 km</h4> 
+	   			   	   		        </div>
+                                    <div class="col-md-6 col-xs-6">
+	   			   	   		        <h4>Free Wi-Fi</h4></div>
+	   			   	   		    </div>
+	   			   	   		</div>
+   			   	   		    
+   			   	   		    	<div class="col-md-12">
+   			   	   		    		<button class="btn btn-primary btn-lg" style="margin-bottom: 20px;background: transparent;color:#ff4b64;border:1px solid #ff4b64">
+   			   	   		    	<b>45$</b></button></div>
+   			   	   		</div>
+   			   	   	</div>
+
+   		   	   	 <a href="#" style="margin: 20px;"><h5 align="right">See all hotels</h5></a>
+   			   </div>
+   			   </div>
+   			</div>
+   		    </div>
+   		    <div class="container-fluid fourth-container">
+	   		    <nav class="navbar navbar-inverse top-navbar4">
+	   				<div class="col-md-12">
+		   				<div class="navbar-header pull-left">
+		   					<a href="#" class="navbar-brand Attraction">Attraction</a>
+		   				</div>
+		   				<ul class="nav navbar-nav navbar-right Attraction-menu pull-right">
+		   					<li><a href="#">All</a></li>
+		   					<li><a href="#">Shopping</a></li>
+		   					<li><a href="#">Shows</a></li>
+		   					<li><a href="#">Parks</a></li>
+		   					<li><a href="#">Circuits</a></li>
+		   					<li><a href="#">Museums</a></li>
+		   					<li><a href="#">Moments</a></li>
+		   				</ul>
+		   			</div>
+		   		</nav>
+		   			<div class="container-fluid" style="padding-left: 8%;padding-right: 8%">
+		   				<div class="row">
+		   					<div class="col-md-12">
+			   				<div class="col-md-4">
+			   					
+			   					  <img src="Images/img5.png" width="100%" class="img-responsive">
+			   					  <h4 class="centered">Lorem Ipsum</h4>
+			   					
+			   				</div>
+			   				<div class="col-md-8">
+	                            <div class="row">
+	                           	   <div class="col-md-12">
+	                           	     
+	                           	   	  <img src="Images/img4.png" width="100%" class="img-responsive"> 
+	                           	   	  <h4 class="centered">Lorem Ipsum</h4>
+	                           	   	  
+	                           	   </div>
+	                           	   <div class="col-md-12" style="margin-top: 50px;">
+	                                 
+	                           	   	  <img src="Images/img4.1.png" width="100%" class="img-responsive">
+	                           	   	  <h4 class="centered">Lorem Ipsum</h4>
+	                           	   	
+	                           	   </div>
+	                            </div>
+			   				</div>
+			   			</div>
+		   			</div>
+			   				<div class="row">
+			   				<div class="col-md-12" style="margin-top:20px;">
+			   					<div class="col-md-4" style="margin-top:20px;">
+			   						 <img src="Images/img6.png" width="100%">
+			   						 <h4 class="centered">Lorem Ipsum</h4>
+			   					</div>
+			   					<div class="col-md-4" style="margin-top:20px;">
+			   						 <img src="Images/img6.1.png" width="100%">
+			   						 <h4 class="centered">Lorem Ipsum</h4>
+			   					</div>
+			   					<div class="col-md-4" style="margin-top:20px;">
+			   						<img src="Images/img6.2.png" width="100%">
+			   						<h4 class="centered">Lorem Ipsum</h4>
+			   					</div>
+			   				</div>
+			   			</div>
+			   			<a href="#" style="margin: 20px;"><h5 align="right">See all hotels</h5></a>
+		   			</div>
+
+   		    </div>
+   		    <div class="container-fluid fourth-container" id="Trips">
+	   		    <nav class="navbar navbar-inverse top-navbar4">
+	   				<div class="col-md-12">
+		   				<div class="navbar-header pull-left">
+		   					<a href="#" class="navbar-brand Trips">Trips</a>
+		   				</div>
+		   				<ul class="nav navbar-nav navbar-right Trips-menu pull-right">
+		   					<li><a href="#">Best Trip</a></li>
+		   					<li><a href="#">Popularity</a></li>
+		   				</ul>
+		   			</div>
+		   		</nav>
+		   		<div class="container-fluid" style="padding-left: 8%;padding-right: 8%">
+		   			
+		   				<div class="col-md-12" style="margin-top: 20px;">
+		   					<div class="row" style="border:1px solid #eee;">
+				   				<div class="col-md-4">
+				   					<div class="row">
+				   					<img src="Images/img 7.png" width="100%"></div>
+				   				</div>
+				   				<div class="col-md-8">
+				   					<div class="col-md-12" style="padding: 30px;"><br>
+				   						<h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h3><br>
+				   						<p style="font-size: 20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				   					</div>
+				   				</div>
+		   			        </div>
+		   			    </div>
+
+		   			    <div class="col-md-12" style="margin-top: 20px;">
+		   					<div class="row" style="border:1px solid #eee;">
+				   				<div class="col-md-4">
+				   					<div class="row">
+				   					<img src="Images/img 7.1.png" width="100%"></div>
+				   				</div>
+				   				<div class="col-md-8">
+				   					<div class="col-md-12" style="padding: 30px;"><br>
+				   						<h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h3><br>
+				   						<p style="font-size: 20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				   					</div>
+				   				</div>
+		   			        </div>
+		   			    </div>
+
+
+		   			    <div class="col-md-12" style="margin-top: 20px;">
+		   					<div class="row" style="border:1px solid #eee;">
+				   				<div class="col-md-4">
+				   					<div class="row">
+				   					<img src="Images/img 7.2.png" width="100%"></div>
+				   				</div>
+				   				<div class="col-md-8">
+				   					<div class="col-md-12" style="padding: 30px;"><br>
+				   						<h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h3><br>
+				   						<p style="font-size: 20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				   					</div>
+				   				</div>
+		   			        </div>
+		   			    </div>
+		   			
+		   			
+		   			    <a href="#" style="margin: 20px;"><h5 align="right">See all hotels</h5></a>
+		   		</div>
+		   	</div>
+		   	<div class="container-fluid" style="padding-left: 8%;padding-right: 8%">
+		   		<div class="col-md-6">
+		   		<div class="col-md-6">
+
+		   			<h3>Cities</h3>
+		   			<ul class=" cities" style="padding-left: 0;color: #9a9a9a;line-height: 2.0">
+		   				<li>Paris</li>
+		   				<li>London</li>
+		   				<li>Miami</li>
+		   				<li>Tokyo</li>
+		   				<li>Pekin</li>
+		   				<li>India</li>
+		   			</ul>
+		   		</div>
+		   		<div class="col-md-6">
+		   			<h3>Explore</h3>
+		   			<ul class=" cities" style="padding-left: 0;color: #9a9a9a;line-height: 2.0">
+		   				<li>Register</li>
+		   				<li>Login</li>
+		   				<li>Assitance</li>
+		   				<li>Eco</li>
+		   			</ul>
+		   		</div>
+		   	</div>
+		   	<div class="col-md-6">
+		   		<div class="col-md-6 col-xs-6">
+		   			<h3>About Us</h3>
+		   			<ul class=" cities" style="padding-left: 0;color: #9a9a9a;line-height: 2.0">
+		   				<li>About TravelCream</li>
+		   				<li>Career</li>
+		   				<li>Blog</li>
+		   				<li>Privacy Policy</li>
+		   				<li>Tearm of Usage</li>
+		   			</ul>
+		   		</div>
+		   		<div class="col-md-6 col-xs-6">
+		   			<h3>Contact</h3>
+		   			<ul class=" cities" style="padding-left: 0;color: #9a9a9a;line-height: 2.0">
+		   				<li>Feel free to get in touch Email</li>
+		   				<li style="color: #ff4b64">jeyabalakumar94@gmail.com</li>
+		   			</ul>
+		   		</div>
+		   	</div>
+		   </div>
+   	</body>
+   	<script>
+var app = angular.module("auto_complete", []);
+app.controller("from-controller", function($scope) {
+	$scope.from = [
+        "Chennai", "Madurai", "Trichy", "Coimbatore", "Tirunelveli", "Tutcorin", "Kanniyakumari", "Selam", "Srivilliputtur", "Mamsapuram"
+    ];
+	    $scope.total = function(string)
+	    {
+	    	$scope.hideinfo = false;
+	    	var output = [];
+        angular.forEach($scope.from, function(car) {
+            if (car.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                output.push(car);
+            }
+        });
+        $scope.search_car = output;
+	    }
+	    $scope.choose_textbox = function(string) {
+        $scope.car = string;
+        $scope.hideinfo = true;
+    }
+});
+
+app.controller("to-controller", function($scope) {
+	$scope.to = [
+        "Chennai", "Madurai", "Trichy", "Coimbatore", "Tirunelveli", "Tutcorin", "Kanniyakumari", "Selam", "Srivilliputtur", "Mamsapuram"
+    ];
+	    $scope.total = function(string)
+	    {
+	    	$scope.hideinfo = false;
+	    	var output = [];
+        angular.forEach($scope.to, function(car) {
+            if (car.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                output.push(car);
+            }
+        });
+        $scope.search_car = output;
+	    }
+	    $scope.choose_textbox = function(string) {
+        $scope.car = string;
+        $scope.hideinfo = true;
+    }
+});
+
+
+   	</script>
+</html>
